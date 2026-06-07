@@ -1,0 +1,89 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 42,
+    "spacing": 4,
+    "margin-top": 6,
+    "margin-left": 8,
+    "margin-right": 8,
+
+    "modules-left": [
+        "custom/arch",
+        "hyprland/workspaces",
+        "temperature",
+        "cpu",
+        "custom/vram"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "pulseaudio#microphone"
+    ],
+
+    "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭 muted",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "tooltip": false
+    },
+
+    "custom/arch": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+
+    "temperature": {
+    "critical-threshold": 80,
+    "format": " 󰔏 {temperatureC}°C",
+    "format-critical": " 󰔏 {temperatureC}°C"
+    },
+
+    "cpu": {
+        "format": " 󰻠 {usage}%",
+        "interval": 2,
+        "tooltip": false
+    },
+
+    "custom/vram": {
+    "format": "󰢮 {}",
+    "exec": "~/.config/waybar/scripts/vram.sh",
+    "interval": 2,
+    "tooltip": false
+    },
+
+    "clock": {
+        "format": " {:%I:%M %p}",
+        "format-alt": " {:%d/%m/%Y}",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "network": {
+        "format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+        "format-ethernet": " 󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}",
+        "format-disconnected": "󰌙 Sin conexión",
+        "interval": 2,
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 Mute",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },    
+}
