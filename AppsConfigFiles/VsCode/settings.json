@@ -1,0 +1,44 @@
+{
+  "highlight.regexes": {
+    // 2xx - Verde (OK, Found, No Content...)
+    "(\\b2\\d{2}\\b)": {
+      "filterFileRegex": ".*\\.txt$",
+      "decorations": [
+        {
+          "color": "#4caf82",
+          "fontWeight": "bold"
+        }
+      ]
+    },
+    // 3xx - Azul (Redirecciones)
+    "(\\b3\\d{2}\\b)": {
+      "filterFileRegex": ".*\\.txt$",
+      "decorations": [
+        {
+          "color": "#4a90a4",
+          "fontWeight": "bold"
+        }
+      ]
+    },
+    // 4xx - Rojo (Client errors: 403, 404, 401...)
+    "(\\b4\\d{2}\\b)": {
+      "filterFileRegex": ".*\\.txt$",
+      "decorations": [
+        {
+          "color": "#c0392b",
+          "fontWeight": "bold"
+        }
+      ]
+    },
+    // 5xx - Morado (Server errors)
+    "(\\b5\\d{2}\\b)": {
+      "filterFileRegex": ".*\\.txt$",
+      "decorations": [
+        {
+          "color": "#9b59b6",
+          "fontWeight": "bold"
+        }
+      ]
+    }
+  }
+}
