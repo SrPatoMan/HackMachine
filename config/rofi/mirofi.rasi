@@ -1,0 +1,101 @@
+/* ============================================
+   TEMA ROFI: chill-night
+   Estilo dark translúcido con iconos de apps
+   Para usar: rofi -show drun -theme chill-night
+   ============================================ */
+
+* {
+    bg:             rgba(15, 15, 20, 88%);
+    bg-selected:    rgba(0, 40, 80, 95%);
+    bg-input:       rgba(25, 25, 35, 80%);
+    fg:             rgba(210, 210, 220, 100%);
+    fg-dim:         rgba(130, 130, 150, 100%);
+    accent:         rgba(0, 170, 255, 100%);
+    border-col:     rgba(0, 120, 220, 60%);
+
+    font:           "JetBrainsMono Nerd Font 11";
+    background-color: transparent;
+    text-color:     @fg;
+}
+
+window {
+    width:              560px;
+    height:             480px;
+    background-color:   @bg;
+    border:             2px;
+    border-color:   rgba(0, 210, 255, 100%);
+    border-radius:      12px;
+    padding:            8px;
+}
+
+mainbox {
+    background-color:   transparent;
+    spacing:            6px;
+    padding:            4px;
+}
+
+/* BARRA DE BUSQUEDA */
+inputbar {
+    background-color:   @bg-input;
+    border-radius:      8px;
+    padding:            8px 12px;
+    spacing:            8px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @fg-dim;
+}
+
+entry {
+    background-color:   transparent;
+    text-color:         @fg;
+    placeholder:        "Search ...";
+    placeholder-color:  @fg-dim;
+    cursor:             text;
+}
+
+/* LISTA DE APPS */
+listview {
+    background-color:   transparent;
+    spacing:            2px;
+    padding:            4px 0px;
+    lines:              10;
+    columns:            1;
+    fixed-height:       true;
+}
+
+element {
+    background-color:   transparent;
+    border-radius:      8px;
+    padding:            8px 12px;
+    spacing:            10px;
+    orientation:        horizontal;
+    children:           [ element-icon, element-text ];
+}
+
+element selected {
+    background-color:   @bg-selected;
+    text-color:         @fg;
+}
+
+element-icon {
+    background-color:   transparent;
+    size:               22px;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    vertical-align:     0.5;
+}
+
+/* SCROLLBAR */
+scrollbar {
+    background-color:   transparent;
+    handle-color:       @border-col;
+    handle-width:       3px;
+    border-radius:      2px;
+    padding:            0px 2px;
+}
