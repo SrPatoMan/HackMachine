@@ -175,6 +175,20 @@ if [[ $DO_CONFIG -eq 1 ]]; then
         done
     fi
 
+    # --- Noctalia: que NO tematice kitty (respetar MIS colores de kitty.conf) ---
+    # Noctalia pinta kitty (y otras apps) con su propio esquema de color: ejecuta
+    # `kitty +kitten themes noctalia`, que inyecta un `include current-theme.conf`
+    # al final de kitty.conf y sobrescribe mi fondo. Lo quito de sus plantillas y
+    # limpio el bloque de tema que deje inyectado, para que manden mis colores.
+    NOCTALIA_CFG="$HOME/.config/noctalia/config.toml"
+    if [[ -f "$NOCTALIA_CFG" ]]; then
+        sed -i 's/"kitty",[[:space:]]*//; s/,[[:space:]]*"kitty"//' "$NOCTALIA_CFG"
+        info "Noctalia: kitty excluido de su tematizado (mis colores mandan)"
+    fi
+    if [[ -f "$HOME/.config/kitty/kitty.conf" ]]; then
+        sed -i '/# BEGIN_KITTY_THEME/,/# END_KITTY_THEME/d' "$HOME/.config/kitty/kitty.conf"
+    fi
+
     # --- Hyprland: mi hyprland.conf manda sobre el hyprland.lua de CachyOS ---
     # CachyOS+Noctalia trae la config de Hyprland en Lua (hyprland.lua). Si
     # dejamos los dos, Hyprland podria cargar el .lua e ignorar mi .conf.
