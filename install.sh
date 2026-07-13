@@ -128,6 +128,30 @@ if [[ $DO_PACKAGES -eq 1 ]]; then
             done
         fi
     fi
+
+    # --- Herramientas de Go (go install -> /usr/bin) ---
+    GO_LIST="$CLONE_DIR/packages/go-tools.txt"
+    if [[ -f "$GO_LIST" ]]; then
+        if command -v go >/dev/null 2>&1; then
+            GOBIN_DIR="$(go env GOPATH)/bin"
+            mkdir -p "$GOBIN_DIR"
+            mapfile -t GO_MODS < <(grep -vE '^\s*(#|$)' "$GO_LIST")
+            info "Compilando ${#GO_MODS[@]} herramientas de Go..."
+            for mod in "${GO_MODS[@]}"; do
+                info "  go install ${mod}@latest"
+                go install "${mod}@latest" || err "  fallo instalando $mod (saltado)"
+            done
+            # Mover todos los binarios recien compilados a /usr/bin
+            if compgen -G "$GOBIN_DIR/*" >/dev/null 2>&1; then
+                info "Moviendo binarios de Go a /usr/bin..."
+                sudo mv -f "$GOBIN_DIR"/* /usr/bin/ \
+                    && info "  binarios de Go en /usr/bin" \
+                    || err "  no pude mover algun binario de Go"
+            fi
+        else
+            warn "go no esta instalado (deberia venir en native.txt), salto herramientas de Go."
+        fi
+    fi
 else
     warn "Salto la instalacion de paquetes (--no-packages)."
 fi

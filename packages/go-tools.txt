@@ -1,0 +1,6 @@
+# Herramientas de Go instaladas con `go install <ruta>@latest` y movidas a /usr/bin.
+# Una ruta de modulo por linea (la que devuelve `go version -m <binario>` en el campo path).
+github.com/ffuf/ffuf/v2
+github.com/projectdiscovery/httpx/cmd/httpx
+github.com/jaeles-project/gospider
+github.com/devploit/nomore403

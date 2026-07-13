@@ -21,8 +21,9 @@ bash <(curl -fsSL https://raw.githubusercontent.com/SrPatoMan/HackMachine/main/i
 `install.sh` hace **dos cosas** de una pasada:
 
 1. **Instala los paquetes**: actualiza el sistema, instala `paru`, luego todos los
-   paquetes nativos (`packages/native.txt`) y los de AUR (`packages/aur.txt`).
-   Si algún paquete no existe en los repos, lo salta y sigue (no aborta).
+   paquetes nativos (`packages/native.txt`), los de AUR (`packages/aur.txt`) y las
+   herramientas de Go (`packages/go-tools.txt`): las compila con `go install ...@latest`
+   y mueve los binarios a `/usr/bin`. Si algún paquete falla, lo salta y sigue.
 2. **Despliega la configuración** (ver tabla abajo). Se hace *después* de los
    paquetes, a propósito, para que mis configs ganen a las que traen los paquetes.
 
@@ -43,7 +44,7 @@ El script despliega cada carpeta en su ruta real:
 | `config/`        | `~/.config/`    | dotfiles de apps (hypr, waybar, fish, kitty, nvim, rofi, btop, micro, VSCode, herramientas de recon...) |
 | `home/`          | `~/`            | dotfiles de shell (`.zshrc`, `.bashrc`, `.bash_profile`, `.bash_logout`) |
 | `system/`        | `/`             | archivos fuera del home (p. ej. `usr/share/cachyos-fish-config`), se copian con `sudo` |
-| `packages/`      | (no se copia)   | listas `native.txt` y `aur.txt` que instala el script |
+| `packages/`      | (no se copia)   | listas `native.txt`, `aur.txt` y `go-tools.txt` que instala el script |
 
 Para añadir más config al repo: copia el archivo a la carpeta correspondiente
 respetando la estructura de destino y haz commit. `install.sh` lo detecta solo,
