@@ -1,0 +1,3 @@
+caido-desktop
+postman-bin
+steamcmd
