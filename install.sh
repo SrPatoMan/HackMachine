@@ -175,6 +175,16 @@ if [[ $DO_CONFIG -eq 1 ]]; then
         done
     fi
 
+    # --- Hyprland: mi hyprland.conf manda sobre el hyprland.lua de CachyOS ---
+    # CachyOS+Noctalia trae la config de Hyprland en Lua (hyprland.lua). Si
+    # dejamos los dos, Hyprland podria cargar el .lua e ignorar mi .conf.
+    # Apartamos el .lua a un backup para que se use MI hyprland.conf (que ya
+    # lanza noctalia como barra en vez de waybar).
+    if [[ -f "$HOME/.config/hypr/hyprland.conf" && -f "$HOME/.config/hypr/hyprland.lua" ]]; then
+        mv -f "$HOME/.config/hypr/hyprland.lua" "$HOME/.config/hypr/hyprland.lua.cachyos-bak"
+        info "hyprland.lua de CachyOS apartado (backup) -> se usa mi hyprland.conf"
+    fi
+
     # --- home/ -> ~/ (incluye dotfiles ocultos) ---
     if [[ -d "$CLONE_DIR/home" ]]; then
         shopt -s dotglob
