@@ -40,5 +40,7 @@
         }
       ]
     }
-  }
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.unicodeHighlight.nonBasicASCII": false
 }
