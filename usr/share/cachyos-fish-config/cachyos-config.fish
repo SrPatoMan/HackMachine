@@ -4,9 +4,11 @@ source /usr/share/cachyos-fish-config/conf.d/done.fish
 
 ## Set values
 ## Run fastfetch as welcome message
-function fish_greeting
-    fastfetch
-end
+#function fish_greeting
+#    fastfetch
+#end
+
+set -U fish_greeting ""
 
 # Format man pages
 set -x MANROFFOPT "-c"
@@ -136,6 +138,24 @@ alias jctl="journalctl -p 3 -xb"
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
+# comando: micro 80 --> Pones el volumen del micro a 80, por ejemplo
+
 function micro
     wpctl set-volume @DEFAULT_AUDIO_SOURCE@ $argv[1]%
+end
+
+# apagar el monitor secundario para ahorrar VRAM
+
+function monitor-off
+    hyprctl keyword monitor HDMI-A-1,disabled
+end
+
+# encender el monitor secundario
+
+function monitor-on
+    hyprctl keyword monitor HDMI-A-1,1920x1080@60,2560x0,1.0
+end
+
+function vps
+    TERM=xterm-256color ssh manul@srpatoman.eu
 end
