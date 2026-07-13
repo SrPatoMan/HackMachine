@@ -2,7 +2,10 @@
 #
 # install.sh — deja este equipo con TODO mi entorno configurado de una pasada.
 #
-#   1) Instala los paquetes (repos oficiales/CachyOS + AUR con paru).
+#   1) Instala los paquetes:
+#        - nativos (repos oficiales/CachyOS)   -> packages/native.txt
+#        - AUR (con paru)                      -> packages/aur.txt
+#        - herramientas de Go (go install)     -> packages/go-tools.txt -> /usr/bin
 #   2) Despliega mis archivos de configuracion en su sitio:
 #        repo/config/*  ->  ~/.config/*      (como usuario)
 #        repo/home/*    ->  ~/*              (dotfiles: .zshrc, .bashrc, ...)
